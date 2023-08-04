@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+	<div class="forms">
+		<section class="auth" id="auth">
+			<div class="container auth__container">
+				<div class="headers" id="headers">
+					<div class="addPost__header headerBlock " id="addPost__header">
+						<div class="header">
+							<label for="addPost__nameArticle" class="addPost__nameArticleLabel" id="addPost__nameArticleLabel">Тема сообщения:</label>
+							<input class="addPost__nameArticle" id="addPost__nameArticle" type="text" placeholder="Название статьи (по умолчанию)">
+						</div>
+					</div>
+					<div class="author__header headerBlock d__none" id="author__header">
+						<div class="header">
+							<div class="hello">
+								<h3>Добрый день</h3>
+								<h2>NAME</h2>
+							</div>
+							<h3>В настоящий момент, у вас:</h3>
+						</div>
+					</div>
+					<div class="auth__header headerBlockAuth headerBLock d__none" id="auth__header">
+						<div class="headerAuth header">
+							<button class="authBtn activeBtn" id="authBtn" onclick="authClick()">Авторизация</button>
+							<button class="regBtn" id="regBtn" onclick="regClick()">Регистрация</button>
+						</div>
+					</div>
+					<div class="authError__header headerBlock d__none" id="authError__header">
+						<div class="header">
+							<h2 class="redText">Дорогой друг!</h2>
+							<p>К сожалению, тебе не удалось авторизоваться на сайте.</p>
+							<div class="mainText">
+								<p>Предлагаем вновь ввести свои контактные данные, либо заказать их восстановление!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bodys" id="bodys">
+					<div class="addPost__content" id="addPost__body">
+						<div class="addPost__body">
+							<textarea class="addPost__textarea" id="addPost__textarea" cols="30" rows="10" placeholder="Дорогой Друг! 
+							Если у тебя есть сведения, не отображенные в данной статье, мы были бы очень признательны, если бы ты поделился ими с нами и нашими читателями!
+							_______________________________
+							С уважением, Команда сайта Tvoy-Site.ru"></textarea>
+						</div>
+						<div class="addPost__footer">
+							<label for="addPost__chooseFile" class="addPost__chooseFile">Выбрать файлы</label>
+							<input type="file" id="addPost__chooseFile" class="addPost__fileInput" multiple />
+							<div class="addPost__images" id="addPost__images"></div>
+							<button type="submit" id="addPost__submit" onclick="addPostSubmit()">Отправить</button>
+						</div>
+					</div>
+					<div class="auth__body body d__none" id="auth__body">
+						<div class="photo">
+							<div class="photoImg">
+								<img src="./images/no-grava.png" alt="">
+							</div>
+							<div class="choosePhoto auth__footer footer">
+								<label for="remember">
+									<p>Помнить</p>
+								</label>
+								<input type="checkbox" id="remember">
+							</div>
+						</div>
+						<div class="main main__blocks auth__blocks">
+							<div class="loginForm">
+								<div class="login main__block">
+									<p>Логин:</p>
+									<input type="text" placeholder="Ваш ЛОГИН" id="inputLogin">
+								</div>
+								<div class="password main__block">
+									<p>Пароль:</p>
+									<input type="password" placeholder="Ваш ПАРОЛЬ" id="inputPassword">
+								</div>
+							</div>
+							<div class="persArea auth__footer footer">
+								<div>
+									<button onclick="authOk()">
+										<p>ВОЙТИ</p>
+									</button>
+								</div>
+								<a href="#">Я забыл свой логин / пароль</a>
+							</div>
+						</div>
+					</div>
+					<div class="reg__body body d__none" id="reg__body">
+						<div class="photo">
+							<div class="photoImg">
+								<img src="./images/grava.jpg" alt="">
+							</div>
+							<div class="choosePhoto reg__footer footer">
+								<a href="#">G.R.Avatar</a>
+							</div>
+						</div>
+						<div class="main main__blocks reg__blocks">
+							<div class="loginForm">
+								<div class="login main__block">
+									<p>Логин:</p>
+									<input type="text" placeholder="Ваш ЛОГИН">
+								</div>
+								<div class="email main__block">
+									<p>Email:</p>
+									<input type="password" placeholder="Ваш E-mail">
+								</div>
+								<div class="password main__block">
+									<p>Пароль:</p>
+									<input type="password" placeholder="Ваш ПАРОЛЬ">
+								</div>
+							</div>
+							<div class="persArea reg__footer footer">
+								<div class="">
+									<button>
+										<p>Зарегистрироваться</p>
+									</button>
+								</div>
+								<div class="rulesSucces">
+									<input type="checkbox">
+									<a href="#">Ознакомлен(-а) и принимаю условия регистрации</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="author__body body d__none" id="author__body">
+						<div class="photo">
+							<div class="photoImg">
+								<img src="./images/my-ava.png" alt="">
+							</div>
+							<div class="choosePhoto author__footer footer">
+								<label class="choosePhotoLabel">
+									<input type="file" class="choosePhotoBtn" />
+									Сменить фото
+								</label>
+							</div>
+						</div>
+						<div class="main main__blocks">
+							<div class="newMessages main__block">
+								<p>Новых сообщений:</p>
+								<span class="greenSpan">5</span>
+								<span>/</span>
+								<span class="activeSpan">3</span>
+							</div>
+							<div class="projects main__blocks">
+								<div class="openProjects main__block ">
+									<p>Открытых проектов:</p>
+									<span>5</span>
+								</div>
+								<div class="agreeding main__block">
+									<p>На согласовании:</p>
+									<span>8</span>
+								</div>
+								<div class="finalizing main__block">
+									<p>На Доработке:</p>
+									<span>3</span>
+								</div>
+								<div class="archive main__block">
+									<p>В архиве:</p>
+									<span>25</span>
+								</div>
+							</div>
+							<div class="persArea author__footer footer">
+								<button>
+									<p>ПЕРЕЙТИ в КАБИНЕТ</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="menu">
+				<div>
+					<button class="menu__closeBtn menu__btn" id="menu__closeBtn" onclick="closeForm()">X</button>
+					<button class="menu__arrowCom menu__btn d__none" id="menu__arrorCom" onclick="commentForm()"></button>
+					<button class="menu__profile menu__btn" id="menu__profile" onclick="authForm()"></button>
+					<button class="menu__cleanBtn menu__btn" id="auth__menuBtn" onclick="cleanField()"></button>
+					<button class="menu__cleanBtnAuthor menu__cleanBtn menu__btn d__none" id="author__menuBtn"></button>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src="./js/script.js"></script>
+</body>
+
+</html>
