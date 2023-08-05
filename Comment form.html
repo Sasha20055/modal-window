@@ -16,8 +16,10 @@
 				<div class="headers" id="headers">
 					<div class="addPost__header headerBlock " id="addPost__header">
 						<div class="header">
-							<label for="addPost__nameArticle" class="addPost__nameArticleLabel" id="addPost__nameArticleLabel">Тема сообщения:</label>
-							<input class="addPost__nameArticle" id="addPost__nameArticle" type="text" placeholder="Название статьи (по умолчанию)">
+							<label for="addPost__nameArticle" class="addPost__nameArticleLabel" id="addPost__nameArticleLabel">Тема
+								сообщения:</label>
+							<input class="addPost__nameArticle" id="addPost__nameArticle" type="text"
+								placeholder="Название статьи (по умолчанию)">
 						</div>
 					</div>
 					<div class="author__header headerBlock d__none" id="author__header">
@@ -183,6 +185,83 @@
 					<button class="menu__profile menu__btn" id="menu__profile" onclick="authForm()"></button>
 					<button class="menu__cleanBtn menu__btn" id="auth__menuBtn" onclick="cleanField()"></button>
 					<button class="menu__cleanBtnAuthor menu__cleanBtn menu__btn d__none" id="author__menuBtn"></button>
+				</div>
+			</div>
+		</section>
+		<section class="prevModal">
+			<div class="multiprev prevMainBlock">
+				<div class="prevHeader multiprev__Header">
+					<h2>Файлы</h2>
+				</div>
+				<div class="multiprevBlock">
+					<ul class="multiprevItems">
+						<li class="multiprevItem">
+							<img src="./images/img1.png" alt="">
+							<button class="multiprevCloseBtn"></button>
+						</li>
+						<li class="multiprevItem">
+							<img src="./images/img1.png" alt="">
+							<button class="multiprevCloseBtn"></button>
+						</li>
+						<li class="multiprevItem">
+							<img src="./images/img1.png" alt="">
+							<button class="multiprevCloseBtn"></button>
+						</li>
+						<li class="multiprevItem">
+							<img src="./images/img1.png" alt="">
+							<button class="multiprevCloseBtn"></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="prev prevMainBlock">
+				<div class="prevHeader">
+					<h2>Заголовок</h2>
+					<button class="prevCloseBtn">X</button>
+				</div>
+				<div class="prevBlock">
+					<div class="prevImg">
+						<img src="./images/colorTheme.jpg" >
+						<div class="prevDeleteBlock d__none">
+							<img src="./previewImages/fair.gif" class="prevFire">
+							<h3 class="prevTextDelete">До удаления ФАЙЛА</h3>
+							<h3 class="prevTimerDelete">10 сек</h3>
+							<button class="prevDesDelBtn">Отмена</button>
+						</div>
+						<button class="prevDelBtn"></button>
+					</div>
+					<div class="prevInfo">
+						<ul class="prevItems">
+							<li class="prevItem">
+								<h4>Name:</h4>
+								<p class="paramExt">parametri</p>
+							</li>
+							<li class="prevItem">
+								<h4>Name:</h4>
+								<p class="paramData">parametri</p>
+							</li>
+							<li class="prevItem">
+								<h4>Name:</h4>
+								<p class="paramProgramm">parametri</p>
+							</li>
+							<li class="prevItem">
+								<h4>Name:</h3>
+								<p class="paramGps">parametri</p>
+							</li>
+							<li class="prevItem">
+								<h4>Name:</h3>
+								<p class="paramGps">parametri</p>
+							</li>
+							<li class="prevItem">
+								<h4>Name:</h3>
+								<p class="paramGps">parametri</p>
+							</li>
+						</ul>
+					</div>
+					<div class="prevFooter">
+						<input type="text" class="prevCommentForm">
+						<button class="prevPushComment">Go</button>
+					</div>
 				</div>
 			</div>
 		</section>

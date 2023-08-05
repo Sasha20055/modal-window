@@ -235,6 +235,8 @@ function closeForm() {
     if (confirmClose) {
       auth.classList.add('d__none')
     }
+  } else {
+    auth.classList.add('d__none')
   }
 }
 
