@@ -474,15 +474,51 @@ a
   top: 0
   position: absolute
   border: 2px solid #f98900
+  border-right: 0
+  border-top: 0
   background-color: white
+  font-size: 17px
+  font-weight: 800
+  color: #880000
 .prevImg
   position: relative
   border: 2px solid #f98900
   display: flex
+  overflow: hidden
   img
     width: 100%
 .prevDeleteBlock
   position: absolute
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  height: 100%
+  img
+    position: absolute
+    z-index: 10
+    opacity: 50%
+  h3, button
+    position: relative
+    z-index: 12
+  h3
+    text-align: center
+    color: white
+    font-size: 24px
+    font-weight: 800
+    -webkit-text-stroke: 1px #ff3000
+    -webkit-text-fill-color: white
+.prevDesDelBtn
+  color: red
+  font-size: 24px
+  background: linear-gradient(#f6dd3a, #ffff00, #f98900) #f98900
+  margin-left: auto
+  margin-right: auto
+  border-radius: 6px 6px 0 0
+  font-size: 24px
+  font-weight: 800
+  padding: 0 15px
+.prevTimerDelete
+  font-size: 40px !important
 .prevDelBtn
   position: absolute
   right: -5px
@@ -509,24 +545,80 @@ a
 .prevItem
   display: flex
   align-items: center
-  gap: 30px
   padding: 3px
   &:nth-child(even)
     background-color: #d3fd57
     padding-bottom: 5px
   h4
+    max-width: 75px
     margin: 0
     color: red
+  p
+    margin-left: auto
+    margin-right: 0
 .prevFooter
   display: flex
   gap: 10px
   background-color: #fff
-  padding: 10px 5px 10px 0
+  padding: 5px 5px 10px 0
   border: 2px solid #f98900
   border-top: 0
+  margin-bottom: 10px
 .prevCommentForm
   width: 80%
   border-bottom: 2px solid #f98900
+  &:placeholder-shown
+    font-size: 16px
+.multiPrevBlock
+  background-color: #fff
+  margin: 0 10px 10px 10px
+  height: 100%
+  overflow: hidden
+  border: 2px solid #f98900
+.multiprevCloseBtn
+  background-color: #fff
+  color: red
+  font-size: 20px
+  font-weight: 700
+.multiprevItems
+  padding: 5px
+  display: flex
+  flex-direction: column
+  gap: 20px
+  overflow: auto
+  max-height: 350px
+  overflow-x: hidden
+  margin: 0
+  &::-webkit-scrollbar
+    background-color: #fbd744
+    width: 7px
+  &::-webkit-scrollbar-button
+    display: none
+  &::-webkit-scrollbar-thumb
+    border-radius: 10px
+    background-color: #f98900
+
+.multiprevItem
+  display: flex
+  justify-content: space-between
+  align-items: center
+  img
+    padding-right: 6px
+.multiprevName
+  align-self: end
+  width: 70%
+  overflow: auto
+  border-bottom: 2px dotted #f98900
+  font-size: 17px
+  color: red
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65)
+  &::-webkit-scrollbar
+    border-radius: 10px
+    height: 4px
+  &::-webkit-scrollbar-thumb
+    border-radius: 10px
+    background-color: #f98900
+    
 
 @media screen and (max-width:768px)
 
