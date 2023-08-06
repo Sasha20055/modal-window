@@ -1,4 +1,4 @@
-.body, .addPost__body {
+@font-face {}.body, .addPost__body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -840,6 +840,15 @@ a:hover {
   color: #ff3000;
 }
 
+.prevModal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .prevModal ul {
   list-style-type: none;
 }
@@ -874,6 +883,9 @@ a:hover {
 }
 
 .prevHeader h2 {
+  font-size: 32px;
+  font-weight: 800;
+  font-family: klementina;
   margin: 0 auto;
 }
 
@@ -925,30 +937,32 @@ a:hover {
 }
 
 .prevDeleteBlock h3, .prevDeleteBlock button {
+  font-family: Tahoma;
   position: relative;
   z-index: 12;
+  font-size: 24px;
+  letter-spacing: 3px;
 }
 
 .prevDeleteBlock h3 {
+  font-weight: 800;
   text-align: center;
   color: white;
-  font-size: 24px;
-  font-weight: 800;
   -webkit-text-stroke: 1px #ff3000;
   -webkit-text-fill-color: white;
+  line-height: 115%;
 }
 
 .prevDesDelBtn {
   color: red;
-  font-size: 24px;
   background: -webkit-gradient(linear, left top, left bottom, from(#f6dd3a), color-stop(#ffff00), to(#f98900)) #f98900;
   background: linear-gradient(#f6dd3a, #ffff00, #f98900) #f98900;
   margin-left: auto;
   margin-right: auto;
   border-radius: 6px 6px 0 0;
-  font-size: 24px;
-  font-weight: 800;
   padding: 0 15px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ff3000;
 }
 
 .prevTimerDelete {
@@ -1003,6 +1017,7 @@ a:hover {
 }
 
 .prevItem h4 {
+  font-family: Tahoma, sans-serif;
   max-width: 75px;
   margin: 0;
   color: red;
@@ -1028,6 +1043,11 @@ a:hover {
 .prevCommentForm {
   width: 80%;
   border-bottom: 2px solid #f98900;
+  color: red;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
 }
 
 .prevCommentForm:placeholder-shown {
@@ -1035,6 +1055,7 @@ a:hover {
 }
 
 .multiPrevBlock {
+  max-height: 350px;
   background-color: #fff;
   margin: 0 10px 10px 10px;
   height: 100%;
@@ -1042,14 +1063,14 @@ a:hover {
   border: 2px solid #f98900;
 }
 
-.multiprevCloseBtn {
+.multiPrevCloseBtn {
   background-color: #fff;
   color: red;
   font-size: 20px;
   font-weight: 700;
 }
 
-.multiprevItems {
+.multiPrevItems {
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1058,28 +1079,28 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 100%;
   gap: 20px;
   overflow: auto;
-  max-height: 350px;
   overflow-x: hidden;
   margin: 0;
 }
 
-.multiprevItems::-webkit-scrollbar {
+.multiPrevItems::-webkit-scrollbar {
   background-color: #fbd744;
   width: 7px;
 }
 
-.multiprevItems::-webkit-scrollbar-button {
+.multiPrevItems::-webkit-scrollbar-button {
   display: none;
 }
 
-.multiprevItems::-webkit-scrollbar-thumb {
+.multiPrevItems::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #f98900;
 }
 
-.multiprevItem {
+.multiPrevItem {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1091,11 +1112,7 @@ a:hover {
           align-items: center;
 }
 
-.multiprevItem img {
-  padding-right: 6px;
-}
-
-.multiprevName {
+.multiPrevName {
   -ms-flex-item-align: end;
       -ms-grid-row-align: end;
       align-self: end;
@@ -1107,12 +1124,12 @@ a:hover {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
 }
 
-.multiprevName::-webkit-scrollbar {
+.multiPrevName::-webkit-scrollbar {
   border-radius: 10px;
   height: 4px;
 }
 
-.multiprevName::-webkit-scrollbar-thumb {
+.multiPrevName::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #f98900;
 }

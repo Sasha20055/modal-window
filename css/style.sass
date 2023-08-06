@@ -1,3 +1,10 @@
+@font-face
+// название шрифта(чтобы не запутаться лучше указать название папки со шрифтом) 
+  font-family: "klementina"
+// адрес шрифта и тип 
+  src: url("../klementina.ttf") format("truetype")
+  font-style: normal
+  font-weight: normal
 
 .body, .addPost__body
   display: flex
@@ -449,6 +456,8 @@ a
   color: #ff3000
 
 .prevModal
+  display: flex
+  justify-content: center
   ul
     list-style-type: none
 .prevMainBlock
@@ -468,6 +477,9 @@ a
   color: #880000
   padding: 10px 0
   h2
+    font-size: 32px
+    font-weight: 800
+    font-family: klementina
     margin: 0 auto
 .prevCloseBtn
   right: 0
@@ -498,25 +510,27 @@ a
     z-index: 10
     opacity: 50%
   h3, button
+    font-family: Tahoma
     position: relative
     z-index: 12
+    font-size: 24px
+    letter-spacing: 3px
   h3
+    font-weight: 800
     text-align: center
     color: white
-    font-size: 24px
-    font-weight: 800
     -webkit-text-stroke: 1px #ff3000
     -webkit-text-fill-color: white
+    line-height: 115%
 .prevDesDelBtn
   color: red
-  font-size: 24px
   background: linear-gradient(#f6dd3a, #ffff00, #f98900) #f98900
   margin-left: auto
   margin-right: auto
   border-radius: 6px 6px 0 0
-  font-size: 24px
-  font-weight: 800
   padding: 0 15px
+  -webkit-text-stroke-width: 2px
+  -webkit-text-stroke-color: #ff3000
 .prevTimerDelete
   font-size: 40px !important
 .prevDelBtn
@@ -550,6 +564,7 @@ a
     background-color: #d3fd57
     padding-bottom: 5px
   h4
+    font-family: Tahoma, sans-serif
     max-width: 75px
     margin: 0
     color: red
@@ -567,26 +582,32 @@ a
 .prevCommentForm
   width: 80%
   border-bottom: 2px solid #f98900
+  color: red
+  font-size: 18px
+  font-weight: 400
+  font-family: Arial, Helvetica, sans-serif
+  font-style: italic
   &:placeholder-shown
     font-size: 16px
 .multiPrevBlock
+  max-height: 350px
   background-color: #fff
   margin: 0 10px 10px 10px
   height: 100%
   overflow: hidden
   border: 2px solid #f98900
-.multiprevCloseBtn
+.multiPrevCloseBtn
   background-color: #fff
   color: red
   font-size: 20px
   font-weight: 700
-.multiprevItems
+.multiPrevItems
   padding: 5px
   display: flex
   flex-direction: column
+  height: 100%
   gap: 20px
   overflow: auto
-  max-height: 350px
   overflow-x: hidden
   margin: 0
   &::-webkit-scrollbar
@@ -598,13 +619,11 @@ a
     border-radius: 10px
     background-color: #f98900
 
-.multiprevItem
+.multiPrevItem
   display: flex
   justify-content: space-between
   align-items: center
-  img
-    padding-right: 6px
-.multiprevName
+.multiPrevName
   align-self: end
   width: 70%
   overflow: auto
@@ -618,7 +637,6 @@ a
   &::-webkit-scrollbar-thumb
     border-radius: 10px
     background-color: #f98900
-    
 
 @media screen and (max-width:768px)
 

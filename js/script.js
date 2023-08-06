@@ -3,6 +3,10 @@ var body = [...document.getElementsByClassName("body")]
 var headerBlock = [...document.getElementsByClassName("headerBlock"), ...document.getElementsByClassName("headerBLock")]
 
 var auth = document.getElementById('auth')
+var prevModal = document.getElementById('prevModal')
+var prevImg = document.getElementById('prevImg')
+
+var multiPrevItems = document.getElementById('multiPrevItems')
 
 var inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")]
 
@@ -115,8 +119,24 @@ function demoFiles(rangeBalance) {
     balance.innerText = `+${currentFiles.length - rangeBalance}`
     balance.setAttribute('id', 'addPost__balance')
     balance.classList.add("addPost__balance")
+    balance.setAttribute('onclick', 'multiPrevOpen()')
     imagesAddPost.append(balance)
   }
+}
+
+function multiPrevOpen() {
+  currentFiles.forEach(elem => {
+    var li = document.createElement("li")
+    li.classList.add('multiPrevItem')
+    li.innerHTML = `<a class='addPostFile' href=${elem.name}></a><h3 class='multiPrevName'>${elem.name}</h3><button class='multiPrevCloseBtn'>X</button>`
+    multiPrevItems.append(li)
+  })
+  addRemoveFunc(auth, prevModal, 'd__none')
+}
+
+function authOpen() {
+  console.log('123')
+  addRemoveFunc(prevModal, auth, 'd__none')
 }
 
 
@@ -245,34 +265,35 @@ function handleFileSelect(evt) {
   var files = evt.target.files; // FileList object
   // Loop through the FileList and render image files as thumbnails.
   for (var i = 0, f; f = files[i]; i++) {
-      // Only process image files.
-      var reader = new FileReader();
-      // Closure to capture the file information.
-      reader.onload = (function (theFile) {
-          return function (e) {
-              // Render thumbnail.
-              var img = document.createElement('img')
-              img.classList.add('thumb')
-              img.setAttribute('title', theFile.name)
-              img.setAttribute('src', e.target.result)
-              previewPict.push(img)
-              console.log(previewPict)
-          };
-      })(f);
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
+    // Only process image files.
+    var reader = new FileReader();
+    // Closure to capture the file information.
+    reader.onload = (function (theFile) {
+      return function (e) {
+        // Render thumbnail.
+        var img = document.createElement('img')
+        img.classList.add('thumb')
+        img.setAttribute('title', theFile.name)
+        img.setAttribute('id', 'thumb')
+        img.setAttribute('src', e.target.result)
+        previewPict.push(img)
+      };
+    })(f);
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
   }
 }
-/*
-imagesAddPost.addEventListener('click', (e) => {
+
+multiPrevItems.addEventListener('click', (e) => {
   e.preventDefault()
   console.log(e.target)
   previewPict.forEach(elem => {
     if (elem.getAttribute('title') === e.target.getAttribute('href')) {
-      imagesAddPost.insertBefore(elem, null)
+      var img = document.getElementById('thumb')
+      var throw123 = prevImg.removeChild(img)
+      prevImg.insertBefore(elem, null)
     }
   })
 })
 
 chooseFile.addEventListener('change', handleFileSelect, false);
-*/
