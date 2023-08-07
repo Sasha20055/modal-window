@@ -46,6 +46,11 @@ var bodys = document.getElementById("bodys")
 var menuArrow = document.getElementById('menu__arrorCom')
 var menuProfile = document.getElementById('menu__profile')
 
+var prevNameFile = document.getElementById('prevNameFile')
+var prevExtFile = document.getElementById('prevExtFile')
+var prevProgrammFile = document.getElementById('prevProgrammFile')
+var prevWeightFile = document.getElementById('prevWeightFile')
+
 var rangeBalance = 0
 var currentFiles = []
 var previewPict = []
@@ -109,6 +114,7 @@ function demoFiles(rangeBalance) {
       var file = document.createElement("a")
       file.setAttribute('href', currentFiles[i].name)
       file.classList.add("addPostFile")
+      file.setAttribute('onclick', 'previewOpen()')
       imagesAddPost.append(file)
     }
   }
@@ -123,6 +129,10 @@ function demoFiles(rangeBalance) {
     imagesAddPost.append(balance)
   }
 }
+///////////////
+function previewOpen() {
+
+}
 
 function multiPrevOpen() {
   currentFiles.forEach(elem => {
@@ -131,6 +141,10 @@ function multiPrevOpen() {
     li.innerHTML = `<a class='addPostFile' href=${elem.name}></a><h3 class='multiPrevName'>${elem.name}</h3><button class='multiPrevCloseBtn'>X</button>`
     multiPrevItems.append(li)
   })
+  prevImg.insertBefore(previewPict[0], null)
+  prevNameFile.innerText = currentFiles[0].name
+  prevExtFile.innerText = currentFiles[0].type
+  prevWeightFile.innerText = currentFiles[0].size + ' Б.'
   addRemoveFunc(auth, prevModal, 'd__none')
 }
 
@@ -284,14 +298,48 @@ function handleFileSelect(evt) {
   }
 }
 
-multiPrevItems.addEventListener('click', (e) => {
+imagesAddPost.addEventListener('click', e => {
   e.preventDefault()
-  console.log(e.target)
   previewPict.forEach(elem => {
     if (elem.getAttribute('title') === e.target.getAttribute('href')) {
-      var img = document.getElementById('thumb')
-      var throw123 = prevImg.removeChild(img)
+      prevNameFile.innerText = ''
+      prevWeightFile.innerText = ''
+      prevExtFile.innerText = ''
+      if (document.getElementById('thumb')) {
+        var img = document.getElementById('thumb')
+        var throw123 = prevImg.removeChild(img)
+      }
       prevImg.insertBefore(elem, null)
+      currentFiles.forEach(file => {
+        if (file.name === elem.getAttribute('title')) {
+          prevNameFile.innerText = file.name
+          prevExtFile.innerText = file.type
+          prevWeightFile.innerText = file.size + ' Б.'
+        }
+      })
+    }
+  })
+})
+
+multiPrevItems.addEventListener('click', e => {
+  e.preventDefault()
+  previewPict.forEach(elem => {
+    if (elem.getAttribute('title') === e.target.getAttribute('href')) {
+      prevNameFile.innerText = ''
+      prevWeightFile.innerText = ''
+      prevExtFile.innerText = ''
+      if (document.getElementById('thumb')) {
+        var img = document.getElementById('thumb')
+        var throw123 = prevImg.removeChild(img)
+      }
+      prevImg.insertBefore(elem, null)
+      currentFiles.forEach(file => {
+        if (file.name === elem.getAttribute('title')) {
+          prevNameFile.innerText = file.name
+          prevExtFile.innerText = file.type
+          prevWeightFile.innerText = file.size + ' Б.'
+        }
+      })
     }
   })
 })

@@ -1134,6 +1134,11 @@ a:hover {
   background-color: #f98900;
 }
 
+.prevParam {
+  max-width: 70px;
+  overflow: auto;
+}
+
 @media screen and (max-width: 768px) {
   section {
     min-width: 100%;
