@@ -189,7 +189,7 @@
 			</div>
 		</section>
 		<section class="prevModal d__none" id="prevModal">
-			<div class="multiPrev prevMainBlock">
+			<div class="multiPrev prevMainBlock d__none" id="multiPrev">
 				<div class="prevHeader multiPrev__Header">
 					<h2>Файлы</h2>
 				</div>
@@ -197,7 +197,7 @@
 					<ul class="multiPrevItems" id="multiPrevItems"></ul>
 				</div>
 			</div>
-			<div class="prev prevMainBlock">
+			<div class="prev prevMainBlock d__none" id="prev">
 				<div class="prevHeader">
 					<h2>Заголовок</h2>
 					<button class="prevCloseBtn" onclick="authOpen()">X</button>
@@ -211,7 +211,7 @@
 							<h3 class="prevTimerDelete">10 сек</h3>
 							<button class="prevDesDelBtn">Отмена</button>
 						</div>
-						<button class="prevDelBtn"></button>
+						<button class="prevDelBtn" id="prevDelBtn" onclick="deleteDoc()"></button>
 					</div>
 					<div class="prevInfo">
 						<ul class="prevItems">
@@ -231,7 +231,7 @@
 					</div>
 					<div class="prevFooter">
 						<input type="text" class="prevCommentForm" placeholder="Примечание...">
-						<button class="prevPushComment">Go</button>
+						<button class="prevPushComment" onclick="authOpen()">Go</button>
 					</div>
 				</div>
 			</div>

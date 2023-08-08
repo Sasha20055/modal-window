@@ -5,6 +5,10 @@ var headerBlock = [...document.getElementsByClassName("headerBlock"), ...documen
 var auth = document.getElementById('auth')
 var prevModal = document.getElementById('prevModal')
 var prevImg = document.getElementById('prevImg')
+var prev = document.getElementById('prev')
+var multiPrev = document.getElementById('multiPrev')
+var prevDelBtn = document.getElementById('prevDelBtn')
+
 
 var multiPrevItems = document.getElementById('multiPrevItems')
 
@@ -114,7 +118,6 @@ function demoFiles(rangeBalance) {
       var file = document.createElement("a")
       file.setAttribute('href', currentFiles[i].name)
       file.classList.add("addPostFile")
-      file.setAttribute('onclick', 'previewOpen()')
       imagesAddPost.append(file)
     }
   }
@@ -128,29 +131,6 @@ function demoFiles(rangeBalance) {
     balance.setAttribute('onclick', 'multiPrevOpen()')
     imagesAddPost.append(balance)
   }
-}
-///////////////
-function previewOpen() {
-
-}
-
-function multiPrevOpen() {
-  currentFiles.forEach(elem => {
-    var li = document.createElement("li")
-    li.classList.add('multiPrevItem')
-    li.innerHTML = `<a class='addPostFile' href=${elem.name}></a><h3 class='multiPrevName'>${elem.name}</h3><button class='multiPrevCloseBtn'>X</button>`
-    multiPrevItems.append(li)
-  })
-  prevImg.insertBefore(previewPict[0], null)
-  prevNameFile.innerText = currentFiles[0].name
-  prevExtFile.innerText = currentFiles[0].type
-  prevWeightFile.innerText = currentFiles[0].size + ' Б.'
-  addRemoveFunc(auth, prevModal, 'd__none')
-}
-
-function authOpen() {
-  console.log('123')
-  addRemoveFunc(prevModal, auth, 'd__none')
 }
 
 
@@ -298,8 +278,34 @@ function handleFileSelect(evt) {
   }
 }
 
-imagesAddPost.addEventListener('click', e => {
-  e.preventDefault()
+function multiPrevOpen() {
+  currentFiles.forEach(elem => {
+    var li = document.createElement("li")
+    li.classList.add('multiPrevItem')
+    li.innerHTML = `<a class='addPostFile' href=${elem.name}></a><h3 class='multiPrevName'>${elem.name}</h3><button class='multiPrevCloseBtn'>X</button>`
+    multiPrevItems.append(li)
+  })
+  if (document.getElementById('thumb')) {
+    var img = document.getElementById('thumb')
+    var throw123 = prevImg.removeChild(img)
+  }
+  prevImg.insertBefore(previewPict[0], null)
+  prevNameFile.innerText = currentFiles[0].name
+  prevExtFile.innerText = currentFiles[0].type
+  prevWeightFile.innerText = currentFiles[0].size + ' Б.'
+  addRemoveFunc(auth, prevModal, 'd__none')
+  multiPrev.classList.remove('d__none')
+  prev.classList.remove('d__none')
+}
+
+function authOpen() {
+  addRemoveFunc(prevModal, auth, 'd__none')
+  multiPrev.classList.add('d__none')
+  prev.classList.add('d__none')
+  demoFiles(rangeBalance)
+}
+
+function previewInfoPict(e) {
   previewPict.forEach(elem => {
     if (elem.getAttribute('title') === e.target.getAttribute('href')) {
       prevNameFile.innerText = ''
@@ -319,6 +325,13 @@ imagesAddPost.addEventListener('click', e => {
       })
     }
   })
+}
+
+imagesAddPost.addEventListener('click', e => {
+  e.preventDefault()
+  previewInfoPict(e)
+  addRemoveFunc(auth, prevModal, 'd__none')
+  prev.classList.remove('d__none')
 })
 
 multiPrevItems.addEventListener('click', e => {
@@ -345,3 +358,23 @@ multiPrevItems.addEventListener('click', e => {
 })
 
 chooseFile.addEventListener('change', handleFileSelect, false);
+
+
+function deleteDoc() {
+  setTimeout(() => {
+    var img = document.getElementById('thumb')
+    var newCurFile = currentFiles.filter(elem => {
+      return (elem.name !== img.getAttribute('title'))
+    })
+    currentFiles = [...newCurFile]
+    let dt = new DataTransfer()
+    if (currentFiles.length > 0) {
+      for (var i = 0; i < currentFiles.length; i++) {
+        dt.items.add(currentFiles[i]);
+      }
+    }
+    chooseFile.files = dt.files
+    alert('Delete!')
+  }, 1000)
+  
+}
