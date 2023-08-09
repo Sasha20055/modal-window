@@ -8,7 +8,13 @@ var prevImg = document.getElementById('prevImg')
 var prev = document.getElementById('prev')
 var multiPrev = document.getElementById('multiPrev')
 var prevDelBtn = document.getElementById('prevDelBtn')
-
+var prevDeleteBlock = document.getElementById('prevDeleteBlock')
+var prevDesDelBtn = document.getElementById('prevDesDelBtn')
+var prevTimerDelete = document.getElementById('prevTimerDelete')
+var prevPushComment = document.getElementById('prevPushComment')
+var prevCommentForm = document.getElementById('prevCommentForm')
+var prevCloseBtn = document.getElementById('prevCloseBtn')
+var prevFire = document.getElementById('prevFire')
 
 var multiPrevItems = document.getElementById('multiPrevItems')
 
@@ -58,6 +64,12 @@ var prevWeightFile = document.getElementById('prevWeightFile')
 var rangeBalance = 0
 var currentFiles = []
 var previewPict = []
+
+// Function Helper
+function addRemoveFunc(addEl, removeEl, classF) {
+  addEl.classList.add(classF)
+  removeEl.classList.remove(classF)
+}
 
 addPostArticle.addEventListener('input', () => {
   if (addPostArticle.value.length > 0) {
@@ -133,7 +145,6 @@ function demoFiles(rangeBalance) {
   }
 }
 
-
 textArea.addEventListener("input", () => {
   if (textArea.value != '') {
     textArea.classList.add("textAreaNoneBgc")
@@ -142,23 +153,15 @@ textArea.addEventListener("input", () => {
   }
 })
 
-// Function Helper
-function addRemoveFunc(addEl, removeEl, classF) {
-  addEl.classList.add(classF)
-  removeEl.classList.remove(classF)
-}
-
 function authClick() {
   addRemoveFunc(authBtn, regBtn, 'activeBtn')
   addRemoveFunc(regBody, authBody, 'd__none')
 }
 
-
 function regClick() {
   addRemoveFunc(regBtn, authBtn, 'activeBtn')
   addRemoveFunc(authBody, regBody, 'd__none')
 }
-
 
 function authOk() {
   if (inputLogin.value !== '' && inputPassword.value != '') {
@@ -180,7 +183,6 @@ function addPostSubmit() {
   addRemoveFunc(addPostHeader, authHeader, 'd__none')
   addRemoveFunc(menuProfile, menuArrow, "d__none")
 }
-
 
 function commentForm() {
   body.forEach(element => {
@@ -335,46 +337,113 @@ imagesAddPost.addEventListener('click', e => {
 })
 
 multiPrevItems.addEventListener('click', e => {
-  e.preventDefault()
-  previewPict.forEach(elem => {
-    if (elem.getAttribute('title') === e.target.getAttribute('href')) {
-      prevNameFile.innerText = ''
-      prevWeightFile.innerText = ''
-      prevExtFile.innerText = ''
-      if (document.getElementById('thumb')) {
-        var img = document.getElementById('thumb')
-        var throw123 = prevImg.removeChild(img)
-      }
-      prevImg.insertBefore(elem, null)
-      currentFiles.forEach(file => {
-        if (file.name === elem.getAttribute('title')) {
-          prevNameFile.innerText = file.name
-          prevExtFile.innerText = file.type
-          prevWeightFile.innerText = file.size + ' Б.'
-        }
-      })
+  if (e.target.classList.contains('addPostFile')) {
+    e.preventDefault()
+    if (prev.classList.contains('d__none')) {
+      prev.classList.remove('d__none')
     }
-  })
+    previewPict.forEach(elem => {
+      if (elem.getAttribute('title') === e.target.getAttribute('href')) {
+        prevNameFile.innerText = ''
+        prevWeightFile.innerText = ''
+        prevExtFile.innerText = ''
+        if (document.getElementById('thumb')) {
+          var img = document.getElementById('thumb')
+          var throw123 = prevImg.removeChild(img)
+        }
+        prevImg.insertBefore(elem, null)
+        currentFiles.forEach(file => {
+          if (file.name === elem.getAttribute('title')) {
+            prevNameFile.innerText = file.name
+            prevExtFile.innerText = file.type
+            prevWeightFile.innerText = file.size + ' Б.'
+          }
+        })
+      }
+    })
+  } else if (e.target.classList.contains('multiPrevCloseBtn')) {
+    var a = e.target.parentNode.querySelector('a')
+    var newCurFile = currentFiles.filter(elem => {
+      return (elem.name !== a.getAttribute('href'))
+    })
+    deleteFromFileColl(newCurFile)
+    if (a.getAttribute('href') == document.getElementById('thumb').getAttribute('title')) {
+      prev.classList.add('d__none')
+    }
+  }
 })
 
 chooseFile.addEventListener('change', handleFileSelect, false);
 
+function deleteFromFileColl(newCurFile) {
+  currentFiles = [...newCurFile]
+  let dt = new DataTransfer()
+  if (currentFiles.length > 0) {
+    for (var i = 0; i < currentFiles.length; i++) {
+      dt.items.add(currentFiles[i]);
+    }
+  }
+  chooseFile.files = dt.files
+  if (!multiPrev.classList.contains('d__none')) {
+    multiPrevItems.innerHTML = ''
+    currentFiles.forEach(elem => {
+      var li = document.createElement("li")
+      li.classList.add('multiPrevItem')
+      li.innerHTML = `<a class='addPostFile' href=${elem.name}></a><h3 class='multiPrevName'>${elem.name}</h3><button class='multiPrevCloseBtn'>X</button>`
+      multiPrevItems.append(li)
+    })
+  } else {
+    authOpen()
+  }
+}
 
+var sec = 30
 function deleteDoc() {
-  setTimeout(() => {
+  prevDeleteBlock.classList.remove('d__none')
+  prevDelBtn.classList.add('d__none')
+  prevTimerDelete.innerText = sec + ' сек'
+  var secInterval = setInterval(() => {
+    sec -= 1
+    prevTimerDelete.innerText = sec + ' сек'
+    if (sec === 0) {
+      clearInterval(secInterval)
+      sec = 30
+    }
+  }, 1000)
+  var timerToClear = setTimeout(() => {
     var img = document.getElementById('thumb')
     var newCurFile = currentFiles.filter(elem => {
       return (elem.name !== img.getAttribute('title'))
     })
-    currentFiles = [...newCurFile]
-    let dt = new DataTransfer()
-    if (currentFiles.length > 0) {
-      for (var i = 0; i < currentFiles.length; i++) {
-        dt.items.add(currentFiles[i]);
-      }
-    }
-    chooseFile.files = dt.files
-    alert('Delete!')
-  }, 1000)
-  
+    deleteFromFileColl(newCurFile)
+    prevDeleteBlock.classList.add('d__none')
+    prevDelBtn.classList.remove('d__none')
+    prev.classList.add('d__none')
+  }, 30000)
+  prevDesDelBtn.addEventListener('click', () => {
+    clearTimeout(timerToClear)
+    clearTimeout(secInterval)
+    sec = 30
+    prevDeleteBlock.classList.add('d__none')
+    prevDelBtn.classList.remove('d__none')
+  })
+  prevCloseBtn.addEventListener('click', () => {
+    clearTimeout(timerToClear)
+    clearTimeout(secInterval)
+    sec = 30
+    prevDeleteBlock.classList.add('d__none')
+    prevDelBtn.classList.remove('d__none')
+  })
+}
+
+prevCommentForm.addEventListener('input', () => {
+  if (prevCommentForm.value.length > 0) {
+    prevPushComment.classList.remove('d__none')
+  } else {
+    prevPushComment.classList.add('d__none')
+  }
+})
+
+function pushCommentImg() {
+  prevPushComment.classList.add('d__none')
 }

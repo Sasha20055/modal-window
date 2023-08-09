@@ -1,7 +1,5 @@
 @font-face
-// название шрифта(чтобы не запутаться лучше указать название папки со шрифтом) 
   font-family: "klementina"
-// адрес шрифта и тип 
   src: url("../klementina.ttf") format("truetype")
   font-style: normal
   font-weight: normal
@@ -353,10 +351,11 @@ a
   background-size: contain
   background-repeat: no-repeat
   text-indent: 20px
-  padding: 5px 3px
   position: relative
   width: 100%
+  height: 100%
   margin: 0 10px
+  padding-top: 5px
   border: none
   outline: none
   &::placeholder
@@ -371,9 +370,6 @@ a
 .textAreaNoneBgc
   background-image: none !important
   text-indent: 0px !important
-.addPost__header
-  background-color: #ccaa6a
-  border: 0
 .addPost__FirstBody
   display: flex
   flex-direction: column
@@ -398,14 +394,16 @@ a
   color: white
   font-size: 20px
   font-weight: 700
+  max-width: 160px
 .addPost__nameArticle
   background: white url(../images/lock_in.png) no-repeat center left
   padding-left: 20px
+  width: 70%
   &::placeholder
     font-weight: 700
     color: green
 .addPostFile
-  padding: 15px 18px
+  padding: 17px 18px
   background-position: 0 0
   background: url(../images/img1.png) 50% 50% no-repeat
 .addPostFile[href $='.pdf']
@@ -429,18 +427,19 @@ a
   list-style: none
   margin: 0
   height: 100%
-  padding: 5px 0
   overflow: hidden
 .addPost__header
   border-top: 2px solid #f98900
+  background-color: #ccaa6a
+  border: 0
+  padding-bottom: 0
+  max-height: 40px
   .header
     display: flex
     width: 100%
     justify-content: space-between
     align-items: center
     padding: 0 5px
-  input
-    width: 70%
 .addPost__fileInput
   display: none
 .addPost__balance
@@ -461,7 +460,6 @@ a
   ul
     list-style-type: none
 .prevMainBlock
-  width: 100%
   width: 250px
   overflow: hidden
   display: flex
@@ -497,8 +495,10 @@ a
   border: 2px solid #f98900
   display: flex
   overflow: hidden
+  min-height: 150px
   img
     width: 100%
+    height: 100%
 .prevDeleteBlock
   position: absolute
   display: flex
@@ -508,7 +508,7 @@ a
   img
     position: absolute
     z-index: 10
-    opacity: 50%
+    animation: opac
   h3, button
     font-family: Tahoma
     position: relative
@@ -531,8 +531,12 @@ a
   padding: 0 15px
   -webkit-text-stroke-width: 2px
   -webkit-text-stroke-color: #ff3000
+.prevTextDelete
+  font-size: 20px
+  font-weight: 800 !important
 .prevTimerDelete
   font-size: 40px !important
+  font-weight: 800 !important
 .prevDelBtn
   position: absolute
   right: -5px
@@ -640,6 +644,13 @@ a
 .prevParam
   width: 50%
   overflow: auto
+  &::-webkit-scrollbar
+    border-radius: 10px
+    height: 4px
+  &::-webkit-scrollbar-thumb
+    border-radius: 10px
+    background-color: #f98900
+
 
 @media screen and (max-width:768px)
 
@@ -662,7 +673,16 @@ a
 @media screen and (max-width:550px)
   .addPost__chooseFile, .addPost__footer button
     font-size: 14px
+  .prevModal
+    width: 100%
+  .multiPrev
+    width: 40%
+  .prev
+    width: 60%
 @media screen and (max-width:450px)
+  .addPost__nameArticleLabel
+    font-size: 17px
+    max-width: 150px
   .addPost__chooseFile, .addPost__footer button
     font-size: 12px
   .addPost__textarea
@@ -712,3 +732,7 @@ a
   p, a
     font-weight: 300 !important
     font-size: 13px !important
+@media screen and (max-width:350px)
+  .prevItem
+    h4
+      font-size: 14px

@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/animation.css">
 </head>
 
 <body>
@@ -200,16 +201,16 @@
 			<div class="prev prevMainBlock d__none" id="prev">
 				<div class="prevHeader">
 					<h2>Заголовок</h2>
-					<button class="prevCloseBtn" onclick="authOpen()">X</button>
+					<button class="prevCloseBtn" id="prevCloseBtn" onclick="authOpen()">X</button>
 				</div>
 				<div class="prevBlock">
 					<div class="prevImg" id="prevImg">
 						<img src="./" alt="" id="thumb">
-						<div class="prevDeleteBlock d__none">
-							<img src="./previewImages/fair.gif" class="prevFire">
+						<div class="prevDeleteBlock d__none" id="prevDeleteBlock">
+							<img src="./previewImages/fair.gif" class="prevFire" id="prevFire">
 							<h3 class="prevTextDelete">До удаления ФАЙЛА</h3>
-							<h3 class="prevTimerDelete">10 сек</h3>
-							<button class="prevDesDelBtn">Отмена</button>
+							<h3 class="prevTimerDelete" id="prevTimerDelete">10 сек</h3>
+							<button class="prevDesDelBtn" id="prevDesDelBtn">Отмена</button>
 						</div>
 						<button class="prevDelBtn" id="prevDelBtn" onclick="deleteDoc()"></button>
 					</div>
@@ -230,8 +231,8 @@
 						</ul>
 					</div>
 					<div class="prevFooter">
-						<input type="text" class="prevCommentForm" placeholder="Примечание...">
-						<button class="prevPushComment" onclick="authOpen()">Go</button>
+						<input type="text" class="prevCommentForm" id="prevCommentForm" placeholder="Примечание...">
+						<button class="prevPushComment d__none" id="prevPushComment" onclick="pushCommentImg()">Go</button>
 					</div>
 				</div>
 			</div>
