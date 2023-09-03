@@ -53,7 +53,7 @@
 						<div class="addPost__body">
 							<textarea class="addPost__textarea" id="addPost__textarea" cols="30" rows="10" placeholder="Дорогой Друг! 
 							Если у тебя есть сведения, не отображенные в данной статье, мы были бы очень признательны, если бы ты поделился ими с нами и нашими читателями!
-							_______________________________
+_______________________________
 							С уважением, Команда сайта Tvoy-Site.ru"></textarea>
 						</div>
 						<div class="addPost__footer">
@@ -84,6 +84,7 @@
 								<div class="password main__block">
 									<p>Пароль:</p>
 									<input type="password" placeholder="Ваш ПАРОЛЬ" id="inputPassword">
+									<a href="#" class="passwordVisability" id="passwordVisability" onclick="parolVisab()"></a>
 								</div>
 							</div>
 							<div class="persArea auth__footer footer">
@@ -99,7 +100,7 @@
 					<div class="reg__body body d__none" id="reg__body">
 						<div class="photo">
 							<div class="photoImg">
-								<img src="./images/grava.jpg" alt="">
+								<img src="./images/grava.jpg" alt="photo">
 							</div>
 							<div class="choosePhoto reg__footer footer">
 								<a href="#">G.R.Avatar</a>
@@ -113,7 +114,7 @@
 								</div>
 								<div class="email main__block">
 									<p>Email:</p>
-									<input type="password" placeholder="Ваш E-mail">
+									<input type="text" placeholder="Ваш E-mail">
 								</div>
 								<div class="password main__block">
 									<p>Пароль:</p>
@@ -135,12 +136,12 @@
 					</div>
 					<div class="author__body body d__none" id="author__body">
 						<div class="photo">
-							<div class="photoImg">
-								<img src="./images/my-ava.png" alt="">
+							<div class="photoImg photoImgAvaBlock" id="photoImgAvaBlock">
+								<img src="./images/grava.jpg" class="photoImgAva" id="photoImgAva" alt="photo">
 							</div>
 							<div class="choosePhoto author__footer footer">
 								<label class="choosePhotoLabel">
-									<input type="file" class="choosePhotoBtn" />
+									<input type="file" class="choosePhotoBtn" id="choosePhotoBtn"/>
 									Сменить фото
 								</label>
 							</div>
@@ -200,7 +201,7 @@
 			</div>
 			<div class="prev prevMainBlock d__none" id="prev">
 				<div class="prevHeader">
-					<h2>Заголовок</h2>
+					<h2 class='prevParam' id="prevNameFile">Заголовок</h2>
 					<button class="prevCloseBtn" id="prevCloseBtn" onclick="authOpen()">X</button>
 				</div>
 				<div class="prevBlock">
@@ -216,10 +217,6 @@
 					</div>
 					<div class="prevInfo">
 						<ul class="prevItems">
-							<li class="prevItem">
-								<h4>Название:</h4>
-								<p class="paramExt prevParam" id="prevNameFile">parametri</p>
-							</li>
 							<li class="prevItem">
 								<h4>Формат:</h3>
 									<p class="paramExt prevParam" id="prevExtFile">parametri</p>

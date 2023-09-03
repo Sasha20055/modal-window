@@ -20,6 +20,10 @@ var multiPrevItems = document.getElementById('multiPrevItems')
 
 var inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")]
 
+var photoImgAva = document.getElementById('photoImgAva')
+var photoImgAvaBlock = document.getElementById('photoImgAvaBlock')
+var choosePhotoBtn = document.getElementById('choosePhotoBtn')
+
 var authBtn = document.getElementById('authBtn')
 var regBtn = document.getElementById('regBtn')
 var addPostBtn = document.getElementById('addPost__submit')
@@ -40,6 +44,7 @@ var authorMenu = document.getElementById('author__menuBtn')
 var authMenu = document.getElementById('auth__menuBtn')
 
 var inputPassword = document.getElementById('inputPassword')
+var passwordVisability = document.getElementById('passwordVisability')
 var inputLogin = document.getElementById('inputLogin')
 var chooseFile = document.getElementById('addPost__chooseFile')
 
@@ -74,8 +79,10 @@ function addRemoveFunc(addEl, removeEl, classF) {
 addPostArticle.addEventListener('input', () => {
   if (addPostArticle.value.length > 0) {
     addPostArticleLabel.innerHTML = 'Ваш Заголовок:'
+    addPostArticle.classList.add('noneLock')
   } else {
     addPostArticleLabel.innerHTML = 'Тема сообщения:'
+    addPostArticle.classList.remove('noneLock')
   }
 })
 
@@ -179,10 +186,25 @@ function authOk() {
 }
 
 function addPostSubmit() {
-  addRemoveFunc(addPostBody, authBody, 'd__none')
-  addRemoveFunc(addPostHeader, authHeader, 'd__none')
-  addRemoveFunc(menuProfile, menuArrow, "d__none")
+  var loginForm = confirm('Благодарим за отправку поста, не хотите ли зарегестрироваться?')
+  if (loginForm) {
+    addRemoveFunc(addPostBody, authBody, 'd__none')
+    addRemoveFunc(addPostHeader, authHeader, 'd__none')
+    addRemoveFunc(menuProfile, menuArrow, "d__none")
+  }
+
+  inputs.forEach(element => {
+    if (element.value.length > 0 && element.type != 'checkbox') {
+      element.value = ""
+    }
+  })
+  textArea.classList.remove("textAreaNoneBgc")
+  addPostArticleLabel.innerHTML = 'Тема сообщения:'
+  addPostArticle.classList.remove('noneLock')
+  currentFiles = []
+  imagesAddPost.innerHTML = ""
 }
+
 
 function commentForm() {
   body.forEach(element => {
@@ -230,6 +252,7 @@ function cleanField() {
       })
       textArea.classList.remove("textAreaNoneBgc")
       addPostArticleLabel.innerHTML = 'Тема сообщения:'
+      addPostArticle.classList.remove('noneLock')
       currentFiles = []
       imagesAddPost.innerHTML = ""
     }
@@ -254,6 +277,26 @@ function closeForm() {
   } else {
     auth.classList.add('d__none')
   }
+}
+
+function handleFileSelectPhoto(evt) {
+  var files = evt.target.files[0]; // FileList object
+  var reader = new FileReader();
+  // Closure to capture the file information.
+  reader.onload = (function (theFile) {
+    return function (e) {
+      // Render thumbnail.
+      var img = document.createElement('img')
+      img.classList.add('photoImgAva')
+      img.setAttribute('title', theFile.name)
+      img.setAttribute('id', 'photoImgAva')
+      img.setAttribute('src', e.target.result)
+      photoImgAvaBlock.innerHTML = ""
+      photoImgAvaBlock.insertBefore(img, null)
+    };
+  })(files);
+  // Read in the image file as a data URL.
+  reader.readAsDataURL(files);
 }
 
 // Function preview photo
@@ -294,14 +337,14 @@ function multiPrevOpen() {
   prevImg.insertBefore(previewPict[0], null)
   prevNameFile.innerText = currentFiles[0].name
   prevExtFile.innerText = currentFiles[0].type
-  prevWeightFile.innerText = currentFiles[0].size + ' Б.'
-  addRemoveFunc(auth, prevModal, 'd__none')
+  prevWeightFile.innerText = Math.ceil(currentFiles[0].size / 1000) + ' Б.'
+  prevModal.classList.remove('d__none')
   multiPrev.classList.remove('d__none')
   prev.classList.remove('d__none')
 }
 
 function authOpen() {
-  addRemoveFunc(prevModal, auth, 'd__none')
+  prevModal.classList.add('d__none')
   multiPrev.classList.add('d__none')
   prev.classList.add('d__none')
   demoFiles(rangeBalance)
@@ -322,7 +365,7 @@ function previewInfoPict(e) {
         if (file.name === elem.getAttribute('title')) {
           prevNameFile.innerText = file.name
           prevExtFile.innerText = file.type
-          prevWeightFile.innerText = file.size + ' Б.'
+          prevWeightFile.innerText = Math.ceil(file.size / 1000) + ' КБ.'
         }
       })
     }
@@ -332,7 +375,7 @@ function previewInfoPict(e) {
 imagesAddPost.addEventListener('click', e => {
   e.preventDefault()
   previewInfoPict(e)
-  addRemoveFunc(auth, prevModal, 'd__none')
+  prevModal.classList.remove('d__none')
   prev.classList.remove('d__none')
 })
 
@@ -356,7 +399,7 @@ multiPrevItems.addEventListener('click', e => {
           if (file.name === elem.getAttribute('title')) {
             prevNameFile.innerText = file.name
             prevExtFile.innerText = file.type
-            prevWeightFile.innerText = file.size + ' Б.'
+            prevWeightFile.innerText = Math.ceil(file.size / 1000) + ' КБ.'
           }
         })
       }
@@ -447,3 +490,16 @@ prevCommentForm.addEventListener('input', () => {
 function pushCommentImg() {
   prevPushComment.classList.add('d__none')
 }
+
+function parolVisab() {
+  if (inputPassword.getAttribute('type') == 'password') {
+    passwordVisability.classList.add('view');
+    inputPassword.setAttribute('type', 'text');
+  } else {
+    passwordVisability.classList.remove('view');
+    inputPassword.setAttribute('type', 'password');
+  }
+  return false;
+}
+
+choosePhotoBtn.addEventListener('change', handleFileSelectPhoto, false);

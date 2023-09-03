@@ -5,6 +5,10 @@
   font-weight: normal;
 }
 
+body {
+  height: 100vh;
+}
+
 .body, .addPost__body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -24,6 +28,10 @@
   z-index: 12;
   height: 85%;
   overflow: hidden;
+}
+
+.noneLock {
+  background: white !important;
 }
 
 .headersMoreHeight {
@@ -72,6 +80,7 @@ section {
       -ms-flex-align: center;
           align-items: center;
   gap: 200px;
+  height: 100%;
 }
 
 button, a, input, label {
@@ -544,8 +553,29 @@ a:hover {
   background: white url(../images/mail.png) no-repeat center left;
 }
 
+.password {
+  position: relative;
+}
+
 .password input {
   background: white url(../images/lock.png) no-repeat center left;
+}
+
+.passwordVisability {
+  background: url(../images/visibility.svg) no-repeat center left;
+  background-size: 20px 20px;
+  padding: 20px;
+  position: absolute;
+  right: 10%;
+}
+
+.view {
+  background: url(../images/invisible.svg) no-repeat center left;
+  background-size: 20px 20px;
+}
+
+.auth {
+  z-index: 1;
 }
 
 .d__none {
@@ -611,13 +641,14 @@ a:hover {
 }
 
 .addPost__textarea {
+  overflow-x: hidden;
   background-image: url(../images/sol.png);
   background-size: contain;
   background-repeat: no-repeat;
   text-indent: 20px;
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   margin: 0 10px;
   padding-top: 5px;
   border: none;
@@ -692,13 +723,19 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding: 10px;
+}
+
+#addPost__submit {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.addPost__chooseFile {
+  margin-right: 20px;
 }
 
 .addPost__chooseFile, .addPost__footer button {
@@ -728,6 +765,8 @@ a:hover {
   background: white url(../images/lock_in.png) no-repeat center left;
   padding-left: 20px;
   width: 70%;
+  font-weight: 700;
+  color: green;
 }
 
 .addPost__nameArticle::-webkit-input-placeholder {
@@ -845,12 +884,14 @@ a:hover {
 }
 
 .prevModal {
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  z-index: 10;
 }
 
 .prevModal ul {
@@ -882,14 +923,16 @@ a:hover {
   display: flex;
   position: relative;
   color: #880000;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .prevHeader h2 {
+  overflow-y: hidden;
   font-size: 32px;
   font-weight: 800;
   font-family: klementina;
   margin: 0 auto;
+  padding: 10px 0;
 }
 
 .prevCloseBtn {
@@ -1053,17 +1096,31 @@ a:hover {
 }
 
 .prevCommentForm {
+  overflow: auto;
   width: 80%;
+  height: 20px;
+  border: 0;
   border-bottom: 2px solid #f98900;
   color: red;
   font-size: 18px;
   font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
+  outline: none;
 }
 
 .prevCommentForm:placeholder-shown {
   font-size: 16px;
+}
+
+.prevCommentForm::-webkit-scrollbar {
+  border-radius: 10px;
+  height: 4px;
+}
+
+.prevCommentForm::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #f98900;
 }
 
 .multiPrevBlock {
